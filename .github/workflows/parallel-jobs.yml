@@ -7,9 +7,9 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     steps:
+      - run: sleep 10
       - run: exit 0
   test2:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 10
       - run: exit 1
