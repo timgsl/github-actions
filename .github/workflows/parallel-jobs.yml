@@ -1,16 +1,17 @@
-name: parallel jobs
+name: build and parallel test
 on:
   push:
     branches:
       - main
 jobs:
-  test1:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: sleep 10
-      - run: exit 0
-  test2:
+      - run: echo hello > tim
+      - run: ls
+  test:
     runs-on: ubuntu-latest
     environment: production
+    needs: build
     steps:
       - run: exit 1
