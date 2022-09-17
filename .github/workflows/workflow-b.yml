@@ -12,10 +12,10 @@ on:
     outputs:
       firstword:
         description: "The first output string"
-        value: ${{ jobs.example_job.outputs.output1 }}
+        value: ${{ jobs.use_input_and_gen_output.outputs.output1 }}
       secondword:
         description: "The second output string"
-        value: ${{ jobs.example_job.outputs.output2 }}
+        value: ${{ jobs.use_input_and_gen_output.outputs.output2 }}
 
 jobs:
   use_input_and_gen_output:
