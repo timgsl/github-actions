@@ -25,6 +25,7 @@ jobs:
           echo "::group::My title"
           echo "Inside group"         
           echo "::endgroup::"
+          echo "# wow waht this" >> $GITHUB_STEP_SUMMARY
       - name: bash-version
         run: echo "::add-mask::$MY_NAME"
       - name: toggle workflow command echoing
