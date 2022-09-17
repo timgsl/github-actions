@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-workflow-passing-data:
-    uses: ./.github/workflows/workflow-B.yml@main
+    uses: ./.github/workflows/workflow-B.yml
     with:
       username: mona
     secrets:
