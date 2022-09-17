@@ -1,4 +1,4 @@
-name: push
+name: push steps
 on:
   push:
     branches:
@@ -9,3 +9,8 @@ jobs:
     steps:
       - run: echo pushed
       - run: echo "::set-output name=action_fruit::strawberry"
+      - name: Set selected color
+        run: echo '::set-output name=SELECTED_COLOR::green'
+        id: random-color-generator
+      - name: Get color
+        run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
