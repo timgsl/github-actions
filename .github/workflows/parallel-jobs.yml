@@ -7,8 +7,8 @@ jobs:
   test1:
     runs-on: ubuntu-latest
     steps:
-      - run: return 0
+      - run: exit 0
   test2:
     runs-on: ubuntu-latest
     steps:
-      - run: return 1
+      - run: exit 1
