@@ -1,0 +1,14 @@
+name: parallel jobs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: return 0
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: return 1
