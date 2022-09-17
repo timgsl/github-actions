@@ -1,4 +1,4 @@
-name: Call a reusable workflow
+name: workflow a - Call a reusable workflow
 
 on:
   push:
