@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: sleep 10
       - run: echo hello > tim
       - run: ls
   test:
@@ -17,4 +18,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: ls
-      # - run: exit 1
+      - run: exit 1
