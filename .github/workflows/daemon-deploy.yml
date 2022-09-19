@@ -18,9 +18,9 @@ jobs:
         working-directory: ./
         run: |
           echo github.sha ${{ github.sha }} >> $GITHUB_STEP_SUMMARY
-          echo "github.event.pull_request.base.sha ${{ github.event.pull_request.base.sha }}" >> $GITHUB_STEP_SUMMARY
-          echo github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }} >> $GITHUB_STEP_SUMMARY
-          echo github.event.pull_request.merge_commit.sha ${{ github.event.pull_request.merge_commit.sha }} >> $GITHUB_STEP_SUMMARY
+          echo "SOURCE branch of PR - github.event.pull_request.base.sha ${{ github.event.pull_request.base.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo TIP of PR - github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }} >> $GITHUB_STEP_SUMMARY
+          echo github.event.pull_request.merge_commit.sha ${{ github.event.pull_request.merge_commit_sha }} >> $GITHUB_STEP_SUMMARY
           echo "# built image ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo this is gh summary $GITHUB_STEP_SUMMARY
           echo cat $GITHUB_STEP_SUMMARY
