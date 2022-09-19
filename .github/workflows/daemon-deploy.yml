@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      IMAGE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     steps:
       # - name: Check out
       #   uses: actions/checkout@v2
@@ -17,6 +19,7 @@ jobs:
         id: tag
         working-directory: ./
         run: |
+          echo "use this sha instead $IMAGE_SHA"
           echo github.sha ${{ github.sha }} >> $GITHUB_STEP_SUMMARY
           echo "SOURCE branch of PR - github.event.pull_request.base.sha ${{ github.event.pull_request.base.sha }}" >> $GITHUB_STEP_SUMMARY
           echo TIP of PR - github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }} >> $GITHUB_STEP_SUMMARY
