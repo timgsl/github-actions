@@ -15,7 +15,7 @@ jobs:
       # - name: Check out
       #   uses: actions/checkout@v2
 
-      - run: IMAGE_SHA=$(${{ github.event.pull_request.head.sha || github.sha }} | cut -c1-8)
+      - run: IMAGE_SHA=$(echo ${{ github.event.pull_request.head.sha || github.sha }} | cut -c1-8)
       - run: echo image sha is $IMAGE_SHA
       - name: Push to ECR
         id: tag
