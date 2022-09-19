@@ -25,6 +25,7 @@ jobs:
   deploy-staging:
     environment: staging-v2-daemon
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to Staging
         run: |
@@ -33,6 +34,7 @@ jobs:
   deploy-production:
     environment: production-v2-daemon
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to Production
         run: |
