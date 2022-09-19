@@ -17,15 +17,22 @@ jobs:
         id: tag
         working-directory: ./
         run: |
-          echo github.sha ${{ github.sha }} 
-          echo github.event.pull_request.base.sha ${{ github.event.pull_request.base.sha }} 
-          echo github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }} 
-          echo github.event.pull_request.merge_commit.sha ${{ github.event.pull_request.merge_commit.sha }} 
-          echo this is gh summary $GITHUB_STEP_SUMMARY
+          echo github.sha ${{ github.sha }} >> $GITHUB_STEP_SUMMARY
+          echo "SOURCE branch of PR - github.event.pull_request.base.sha ${{ github.event.pull_request.base.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo TIP of PR - github.event.pull_request.head.sha ${{ github.event.pull_request.head.sha }} >> $GITHUB_STEP_SUMMARY
+          echo github.event.pull_request.merge_commit.sha ${{ github.event.pull_request.merge_commit_sha }} >> $GITHUB_STEP_SUMMARY
           echo "# built image ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo this is gh summary $GITHUB_STEP_SUMMARY
+          echo cat $GITHUB_STEP_SUMMARY
           echo pushing image ...
       - run: echo $GITHUB_STEP_SUMMARY
+      - name: timtest
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
       - name: Dump GitHub context
         id: github_context_step
         run: |
