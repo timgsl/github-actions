@@ -1,0 +1,50 @@
+name: Daemon Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Check out
+      #   uses: actions/checkout@v2
+
+      - name: Push to ECR
+        id: tag
+        working-directory: ./
+        run: |
+          # aws ecr get-login-password --region ${region}  | docker login --username AWS --password-stdin ${accountid}.dkr.ecr.${region}.amazonaws.com
+          # docker build --tag ${accountid}.dkr.ecr.${region}.amazonaws.com/${ecr_repository}:$(echo ${{ github.sha }} | cut -c1-8) -f Dockerfile.daemons .
+          echo build and tagging image ${{ github.sha }} 
+          echo pushing image ...
+          # docker push ${accountid}.dkr.ecr.${region}.amazonaws.com/${ecr_repository}:$(echo ${{ github.sha }} | cut -c1-8)
+        # env:
+        #   accountid: ${{ secrets.ACCOUNTID}}
+        #   region: ap-southeast-1
+        #   ecr_repository: daemon-v2
+
+      # - name: Send custom JSON data to Slack workflow
+      #   id: slack
+      #   uses: slackapi/slack-github-action@v1.18.0
+      #   with:
+      #     # For posting a rich message using Block Kit
+      #     payload: |
+      #       {
+      #         "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+      #             }
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #     SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
