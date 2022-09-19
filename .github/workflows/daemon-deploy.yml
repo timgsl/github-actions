@@ -22,6 +22,24 @@ jobs:
           echo build and tagging image ${{ github.sha }} 
           echo "# built image ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo pushing image ...
+  deploy-staging:
+    environment: staging-v2-daemon
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging
+        run: |
+          echo deploying to staging
+          echo "#  deployed ${{ github.sha }} to STAGING" >> $GITHUB_STEP_SUMMARY
+  deploy-production:
+    environment: production-v2-daemon
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production
+        run: |
+          echo deploying to production
+          echo "#  deployed ${{ github.sha }} to PRODUCTION" >> $GITHUB_STEP_SUMMARY
+
+
           # docker push ${accountid}.dkr.ecr.${region}.amazonaws.com/${ecr_repository}:$(echo ${{ github.sha }} | cut -c1-8)
         # env:
         #   accountid: ${{ secrets.ACCOUNTID}}
