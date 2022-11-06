@@ -1,5 +1,5 @@
 name: Issue comment handler
-on: [issue_comment, workflow_dispatch]
+on: [issue_comment]
 
 jobs:
   issue_commented:
@@ -8,4 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo-out
-        run: echo '${{ toJSON(github.event) }}'
+        run: |
+          echo '${{ github.event.comment.body }}'
+          echo '${{ toJSON(github.event) }}'
