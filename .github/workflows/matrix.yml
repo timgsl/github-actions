@@ -1,30 +1,20 @@
 name: matrix includes
 on: push
-concurrency:
-  # cancel any old in progress tests for the PR if there are newer tests running
-  group: ${{ github.workflow }}-${{ github.ref }}
-  # cancel-in-progress: true
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-      # fail-fast: true # stop the workflow once any test fails
       matrix:
-        repo: [api, common-services] # for these repos, use 2 test runners each
-        node_index: [0, 1]
-        total_nodes: [2]
+        repo: [api, common-services]
         command: [test --fail-fast --color]
         include:
-          # just use 1 runner for the repos below
-          # node_index and total_nodes are not specified for the repos below
-          # the frontend tests use jest instead of ava
           - repo: frontend
             command: [test]
           - repo: common-lib
             command: [test --fail-fast --color]
     steps:
       - name: Test ${{ matrix.repo }}
-        run: echo workspace @rc-main/${{ matrix.repo }} ${{ toJSON(matrix.command) }}
-        env:
-          CI_NODE_INDEX: ${{ matrix.node_index }}
-          CI_NODE_TOTAL: ${{ matrix.total_nodes }}
+        # run: yarn workspace @rc-main/${{ matrix.repo }} ${{ toJSON(matrix.command) }}
+        run: |
+          echo repo ${{ matrix.repo}}
+          echo command ${{ matrix.command}}
