@@ -16,3 +16,9 @@ jobs:
       - name: Test ${{ matrix.repo }}
         run: |
           echo matrix '${{ toJSON(matrix) }}'
+      - name: diff
+        run: |
+          git diff @~ | grep -q 'defproject my-repository'
+      - name: did the version changed
+        if: ${{ success() }}
+        run: echo the version changed
