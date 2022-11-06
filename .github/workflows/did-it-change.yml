@@ -1,0 +1,14 @@
+name: did it change
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: diff
+        run: |
+          git diff @~ | grep -q 'defproject my-repository'
+      - name: did the version changed
+        if: ${{ success() }}
+        run: echo the version changed
