@@ -17,4 +17,4 @@ jobs:
         run: |
           echo repo ${{ matrix.repo }}
           echo command ${{ matrix.command }}
-          echo '${{ toJSON(matrix.command) }}'
+          echo jsonify command: '${{ toJSON(matrix.command) }}'
