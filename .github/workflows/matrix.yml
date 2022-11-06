@@ -13,15 +13,15 @@ jobs:
         repo: [api, common-services] # for these repos, use 2 test runners each
         node_index: [0, 1]
         total_nodes: [2]
-        command: ["test --fail-fast --color"]
+        command: [test --fail-fast --color]
         include:
           # just use 1 runner for the repos below
           # node_index and total_nodes are not specified for the repos below
           # the frontend tests use jest instead of ava
           - repo: frontend
-            command: ["test"]
+            command: [test]
           - repo: common-lib
-            command: ["test --fail-fast --color"]
+            command: [test --fail-fast --color]
     steps:
       - name: Test ${{ matrix.repo }}
         run: echo workspace @rc-main/${{ matrix.repo }} ${{ toJSON(matrix.command) }}
