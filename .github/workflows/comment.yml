@@ -11,3 +11,12 @@ jobs:
         run: |
           echo '${{ github.event.comment.body }}'
           echo '${{ toJSON(github.event) }}'
+  issue_commented2:
+    # if: github.event.comment.body == 'test'
+    name: Issue comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo-out
+        run: |
+          echo '${{ github.event.comment.body }}'
+          echo '${{ toJSON(github.event) }}'
