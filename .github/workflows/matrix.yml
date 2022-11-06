@@ -1,0 +1,20 @@
+name: matrix includes
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repo: [api, common-services]
+        command: [test]
+        include:
+          - repo: frontend
+            command: [test2]
+          - repo: common-lib
+            command: [test2]
+    steps:
+      - name: Test ${{ matrix.repo }}
+        run: |
+          echo matrix.repo: ${{ matrix.repo }}
+          echo matrix.command: ${{ matrix.command }}
+          echo jsonify matrix.command: '${{ toJSON(matrix.command) }}'

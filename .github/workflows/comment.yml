@@ -1,0 +1,13 @@
+name: Issue comment handler
+on: [issue_comment]
+
+jobs:
+  issue_commented:
+    # if: github.event.comment.body == 'test'
+    name: Issue comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo-out
+        run: |
+          echo '${{ github.event.comment.body }}'
+          echo '${{ toJSON(github.event) }}'
