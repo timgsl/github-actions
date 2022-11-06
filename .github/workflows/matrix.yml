@@ -15,6 +15,4 @@ jobs:
     steps:
       - name: Test ${{ matrix.repo }}
         run: |
-          echo matrix.repo: ${{ matrix.repo }}
-          echo matrix.command: ${{ matrix.command }}
-          echo jsonify matrix.command: '${{ toJSON(matrix.command) }}'
+          echo matrix ${{ toJSON(matrix) }}
