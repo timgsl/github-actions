@@ -1,0 +1,11 @@
+name: Issue comment handler
+on: [issue_comment, workflow_dispatch]
+
+jobs:
+  issue_commented:
+    # if: github.event.comment.body == 'test'
+    name: Issue comment
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo-out
+        run: echo '${{ toJSON(github.event) }}'
