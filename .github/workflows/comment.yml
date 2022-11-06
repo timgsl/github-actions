@@ -1,5 +1,6 @@
 name: Issue comment handler
-on: [issue_comment]
+# on: [issue_comment]
+on: [issue_comment, workflow_dispatch]
 
 jobs:
   issue_commented:
