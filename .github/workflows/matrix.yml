@@ -9,9 +9,9 @@ jobs:
         command: [test]
         include:
           - repo: frontend
-            command: [test2]
+            command: test2
           - repo: common-lib
-            command: [test2]
+            command: test2
     steps:
       - name: Test ${{ matrix.repo }}
         run: |
