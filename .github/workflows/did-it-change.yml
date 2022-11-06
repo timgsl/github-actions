@@ -9,6 +9,7 @@ jobs:
       - name: diff
         run: |
           git checkout
+          git log
           git diff HEAD~ | grep -q 'defproject my-repository'
       - name: did the version changed
         if: ${{ success() }}
