@@ -24,7 +24,7 @@ jobs:
             command: ["test --fail-fast --color"]
     steps:
       - name: Test ${{ matrix.repo }}
-        run: echo workspace @rc-main/${{ matrix.repo }} ${{ matrix.command }}
+        run: echo workspace @rc-main/${{ matrix.repo }} ${{ toJSON(matrix.command) }}
         env:
           CI_NODE_INDEX: ${{ matrix.node_index }}
           CI_NODE_TOTAL: ${{ matrix.total_nodes }}
