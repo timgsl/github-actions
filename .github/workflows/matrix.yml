@@ -9,12 +9,11 @@ jobs:
         command: [test]
         include:
           - repo: frontend
-            command: [test]
+            command: [test2]
           - repo: common-lib
-            command: [test]
+            command: [test2]
     steps:
       - name: Test ${{ matrix.repo }}
-        # run: yarn workspace @rc-main/${{ matrix.repo }} ${{ toJSON(matrix.command) }}
         run: |
           echo repo ${{ matrix.repo}}
           echo command ${{ matrix.command}}
