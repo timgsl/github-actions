@@ -1,0 +1,14 @@
+name: tim test
+on:
+  push:
+    branches:
+      - main
+jobs:
+  pushed:
+    runs-on: ubuntu-latest
+    env:
+      MY_NAME: "Mona The Octocat"
+    steps:
+      - run: echo pushed 1
+      - run: sh -c 'exit 1'
+      - run: echo pushed 2
