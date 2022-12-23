@@ -12,3 +12,4 @@ jobs:
       - run: echo pushed 1
       - run: sh -c 'exit 1'
       - run: echo pushed 2
+        if: ${{ failure() }}
