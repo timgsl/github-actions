@@ -20,3 +20,11 @@ jobs:
           CI_NODE_TOTAL: ${{ matrix.total_nodes }}
       - name: list
         run: ls
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: list
+        run: ls
