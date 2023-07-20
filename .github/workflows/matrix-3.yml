@@ -5,14 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        repo: [api, common-services]
-        command: [test]
-        include:
-          - repo: frontend
-            command: test2
-          - repo: common-lib
-            command: test2
+        node_index: [0, 1, 2]
+        total_nodes: [3]
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Test ${{ matrix.repo }}
         run: |
-          echo matrix '${{ toJSON(matrix) }}'
+          echo ci node index is $CI_NODE_INDEX 
+          echo ci node index is $CI_NODE_INDEX > $CI_NODE_INDEX
+          ls
+        env:
+          CI_NODE_INDEX: ${{ matrix.node_index }}
+          CI_NODE_TOTAL: ${{ matrix.total_nodes }}
+      - name: list
+        run: ls
