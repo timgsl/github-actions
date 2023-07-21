@@ -13,13 +13,20 @@ jobs:
       - name: Test ${{ matrix.repo }}
         run: |
           echo ci node index is $CI_NODE_INDEX 
-          echo ci node index is $CI_NODE_INDEX > $CI_NODE_INDEX
+          echo ci node index is $CI_NODE_INDEX > coverage.txt
           ls
         env:
           CI_NODE_INDEX: ${{ matrix.node_index }}
           CI_NODE_TOTAL: ${{ matrix.total_nodes }}
       - name: list
         run: ls
+      - name: save coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          # ensure that jobs don't overwrite existing artifacts, use a different name per job:
+          name: coverage-file ${{ matrix.node_index }}
+          path: coverage.txt
+          retention-days: 1 # don't need to retain for the default of 90 days
   merge:
     needs: test
     runs-on: ubuntu-latest
