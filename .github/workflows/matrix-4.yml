@@ -1,0 +1,54 @@
+name: matrix 4 - matrix - cache coverage then merge again in job 2 to merge
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_index: [0, 1, 2]
+        total_nodes: [3]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Test ${{ matrix.repo }}
+        run: |
+          echo ci node index is $CI_NODE_INDEX 
+          echo ci node index is $CI_NODE_INDEX > coverage.txt
+          ls
+        env:
+          CI_NODE_INDEX: ${{ matrix.node_index }}
+          CI_NODE_TOTAL: ${{ matrix.total_nodes }}
+      - name: list
+        run: ls
+      - uses: actions/cache/save@v3
+        with:
+          path: coverage.txt
+          # since we only use the coverage file for the merge job below,
+          # we do not want to share the cache - we want to create a cache that is
+          # specific to this particular workflow run by using thte run_id
+          key: ${{ github.run_id }}-${{ matrix.node_index }}
+  merge:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      # - uses: actions/download-artifact@v3 # do not specify name to download all artifacts
+      - uses: actions/cache/restore@v3
+        with:
+          key: ${{ github.run_id }}-0
+          path: coverage.txt
+      - name: list
+        run: |
+          ls -R
+          mv coverage.txt coverage0.txt
+          cat coverage0.txt
+      - uses: actions/cache/restore@v3
+        with:
+          key: ${{ github.run_id }}-1
+          path: coverage.txt
+      - name: list
+        run: |
+          ls -R
+          mv coverage.txt coverage1.txt
+          cat coverage1.txt
