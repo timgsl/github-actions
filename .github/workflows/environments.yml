@@ -1,0 +1,16 @@
+name: environments
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: stuff
+        run: echo hello
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: echo
+        run: echo deploy
