@@ -9,6 +9,7 @@ jobs:
       - name: stuff
         run: echo hello
   deployment:
+    needs: test
     runs-on: ubuntu-latest
     environment: production
     steps:
