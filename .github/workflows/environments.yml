@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: stuff
+      - name: stufff
         run: echo hello
   deployment:
     needs: test
